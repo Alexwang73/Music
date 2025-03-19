@@ -11,7 +11,10 @@ public class Game {
     public void playGame() {
         while(!win) {
             System.out.println(spaces);
-
+            System.out.println("-----------------------------------");
+            System.out.println("GUESS THE SONG:");
+            //add stuff here
+            System.out.println("-----------------------------------");
         }
     }
 
