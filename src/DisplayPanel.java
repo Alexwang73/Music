@@ -5,30 +5,32 @@ import java.awt.Graphics2D;
 import java.awt.BasicStroke;
 import java.awt.Color;
 
-// this class is a subclass of JPanel
 public class DisplayPanel extends JPanel {
 
-    public DisplayPanel() { }
+    // create instance variables to store (x, y) location of rectangle
+    private int rectX;
+    private int rectY;
 
-    /* the system calls the paintComponent method automatically when
-       you add the DisplayPanel to the frame in order to "paint it" onto
-       the frame (i.e. display it); NEVER call this method explicitly!! */
+    // create instance variable for Rectangle, so we can access it in different methods
+    private Rectangle rect1;
+
+    public DisplayPanel() {
+        // set starting position of rectangle to be (50, 30)
+        rectX = 50;
+        rectY = 30;
+
+        // initialize rect1 here (not in paintComponent)
+        rect1 = new Rectangle(70, 30);
+    }
+
     @Override
     public void paintComponent(Graphics g) {
-        super.paintComponent(g);  // always put this
-        Graphics2D g2d = (Graphics2D) g; // cast g to a 2D graphics object
+        super.paintComponent(g);
+        Graphics2D g2d = (Graphics2D) g;
 
-        // create a Rectangle object (note: this is a built-in Rectangle class)
-        Rectangle rect1 = new Rectangle(70, 30);
-
-        // set rectangle's location to be x = 50, y = 30;
-        // note that (0, 0) is TOP LEFT corner (not bottom left),
-        // and +x direction is to the right, and +y direction is DOWN (not up)
-        rect1.setLocation(50, 30);
-
-        // draw rectangle on the screen with red pen
-        g2d.setStroke(new BasicStroke(3)); // 3 is pen "thickness"
-        g2d.setColor(Color.RED); // set draw color to red
-        g2d.draw(rect1); // draw rectangle
+        rect1.setLocation(rectX, rectY);  // set location to (rectX, rectY)
+        g2d.setStroke(new BasicStroke(3));
+        g2d.setColor(Color.RED);
+        g2d.draw(rect1);
     }
 }
