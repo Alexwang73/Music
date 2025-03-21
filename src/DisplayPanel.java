@@ -33,4 +33,8 @@ public class DisplayPanel extends JPanel {
         g2d.setColor(Color.RED);
         g2d.draw(rect1);
     }
+
+    public void setRect1(int x, int y) {
+        rect1.setLocation(x,y);
+    }
 }
