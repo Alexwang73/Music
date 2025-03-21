@@ -1,43 +1,75 @@
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Game {
-    //instance variables
-    ArrayList spaces;
-    boolean win = true;
+    private int xLoc = 0;
+    private int yLoc = 0;
 
 
-    //methods
-    public void playGame() {
-        while(!win) {
-            System.out.println(spaces);
-            System.out.println("-----------------------------------");
-            System.out.println("GUESS THE SONG:");
-            //add stuff here
-            System.out.println("-----------------------------------");
+
+
+    public void printBoard(String[][]playBoard) {
+        for (int x = 0; x < playBoard.length; x++) {
+            for (int y = 0; y < playBoard[x].length; y++) {
+                System.out.print(playBoard[x][y]);
+            }
+            System.out.println();
         }
     }
+    // 0 is white
+    // 1 is gray or black
+    public boolean isWhite(int[][] testBoard, String key, int x, int y) {
+        boolean isWhite = false;
+        if (key.equals("w")) {
+            if (x+1<testBoard.length && x+1>0) {
+                if (testBoard[x+1][y]==0) {
+                    isWhite=true;
+                    xLoc++;
+                }
+            }
+        }
+        if (key.equals("a")) {
+            if (y-1<testBoard.length && y-1>0) {
+                if (testBoard[x][y-1]==0) {
+                    isWhite=true;
+                    yLoc--;
+                }
+            }
+        }
+        if (key.equals("s")) {
+            if (x-1>testBoard.length && x-1>0) {
+                if (testBoard[x-1][y]==0) {
+                    isWhite=true;
+                    xLoc--;
+                }
+            }
+        }
+        if (key.equals("d")) {
+            if (y+1<testBoard.length && y+1>0) {
+                if (testBoard[x][y+1]==0) {
+                    isWhite=true;
+                    yLoc++;
+                }
+            }
+        }
+        return isWhite;
+    }
 
-    //helpers (if needed)
+    public void playGame(int[][] testBoard, String[][] playBoard) {
+        Scanner scan = new Scanner(System.in);
+        boolean win = false;
+            while (!win) {
+                printBoard(playBoard);
+                System.out.println("Please choose a space to move");
+                String key = scan.nextLine();
+                key = key.toLowerCase();
+                if (key.equals("w")||key.equals("a")||key.equals("s")||key.equals("d")) {
+                    if (isWhite(testBoard, key, xLoc, yLoc)) {
 
-    public Game() {
-        // create a JFrame (a window) and with a particular text for the title bar
-        JFrame frame = new JFrame("Frame title");
-
-        // apply setting to that clicking X in top right of window will close window and end program
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // set frame to have 300 width, 200 height
-        frame.setSize(300, 200);
-
-        // auto-center the frame on the screen
-        frame.setLocationRelativeTo(null);
-
-        // create and add a DisplayPanel to the frame
-        DisplayPanel panel = new DisplayPanel();
-        frame.add(panel);
-
-        // display the frame (window)
-        frame.setVisible(true);
+                    }
+                }
+            }
     }
 }
