@@ -3,18 +3,28 @@ import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;
 
-public class Song {
+public class Song extends Playlist {
     private String name;
     private String filePath;
+    private String artist;
 
     //constructor
-    public Song(String name, String filePath) {
+    public Song(String name, String filePath, String artist) {
         this.filePath = filePath;
         this.name = name;
+        this.artist = artist;
     }
 
     public String getName() {
         return name;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public String getArtist() {
+        return artist;
     }
 
     /*
