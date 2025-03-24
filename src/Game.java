@@ -25,8 +25,8 @@ public class Game {
             String key = scan.nextLine();
             key = key.toLowerCase();
             if (key.equals("w")||key.equals("a")||key.equals("s")||key.equals("d")) {
-                if (isWhite(testBoard, key, xLoc, yLoc)) {
-                    //empty if body
+                if (!isWhite(testBoard, key, xLoc, yLoc)) {
+                    System.out.println("You cannot move there");
                 }
             }
         }
