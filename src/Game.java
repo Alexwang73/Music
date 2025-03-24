@@ -7,9 +7,6 @@ public class Game {
     private int xLoc = 0;
     private int yLoc = 0;
 
-
-
-
     public void printBoard(String[][]playBoard) {
         for (int x = 0; x < playBoard.length; x++) {
             for (int y = 0; y < playBoard[x].length; y++) {
@@ -18,6 +15,23 @@ public class Game {
             System.out.println();
         }
     }
+
+    public void playGame(int[][] testBoard, String[][] playBoard) {
+        Scanner scan = new Scanner(System.in);
+        boolean win = false;
+        while (!win) { //needs a win condition in the loop
+            printBoard(playBoard);
+            System.out.println("Please choose a space to move");
+            String key = scan.nextLine();
+            key = key.toLowerCase();
+            if (key.equals("w")||key.equals("a")||key.equals("s")||key.equals("d")) {
+                if (isWhite(testBoard, key, xLoc, yLoc)) {
+                    //empty if body
+                }
+            }
+        }
+    }
+
     // 0 is white
     // 1 is gray or black
     public boolean isWhite(int[][] testBoard, String key, int x, int y) {
@@ -57,19 +71,4 @@ public class Game {
         return isWhite;
     }
 
-    public void playGame(int[][] testBoard, String[][] playBoard) {
-        Scanner scan = new Scanner(System.in);
-        boolean win = false;
-            while (!win) {
-                printBoard(playBoard);
-                System.out.println("Please choose a space to move");
-                String key = scan.nextLine();
-                key = key.toLowerCase();
-                if (key.equals("w")||key.equals("a")||key.equals("s")||key.equals("d")) {
-                    if (isWhite(testBoard, key, xLoc, yLoc)) {
-
-                    }
-                }
-            }
-    }
 }
