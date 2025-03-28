@@ -4,29 +4,35 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Game {
-    private int xLoc = 0;
-    private int yLoc = 0;
+    private int xLoc;
+    private int yLoc;
+    private int[][] board;
 
-    public void printBoard(String[][]playBoard) {
-        for (int x = 0; x < playBoard.length; x++) {
-            for (int y = 0; y < playBoard[x].length; y++) {
-                System.out.print(playBoard[x][y]);
-            }
-            System.out.println();
-        }
+
+    public Game(int[][] board) {
+        xLoc = 0;
+        yLoc = 0;
+        this.board = board;
     }
+
 
     public void playGame(int[][] testBoard, String[][] playBoard) {
         Scanner scan = new Scanner(System.in);
         boolean win = false;
+        boolean move = true;
+
         while (!win) { //needs a win condition in the loop
-            printBoard(playBoard);
+            //printBoard(playBoard); //printboard is in a separate class
             System.out.println("Please choose a space to move");
             String key = scan.nextLine();
             key = key.toLowerCase();
-            if (key.equals("w")||key.equals("a")||key.equals("s")||key.equals("d")) {
-                if (!isWhite(testBoard, key, xLoc, yLoc)) {
-                    System.out.println("You cannot move there");
+            while (move) {
+                System.out.println("Please choose a space to move");
+                if (key.equals("w") || key.equals("a") || key.equals("s") || key.equals("d")) {
+                    if (!isWhite(testBoard, key, xLoc, yLoc)) {
+                        System.out.println("You cannot move there");
+                    }
+                    move = false;
                 }
             }
         }

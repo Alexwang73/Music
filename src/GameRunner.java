@@ -1,5 +1,6 @@
 public class GameRunner {
     public static void main(String[] args) {
-        Game frame = new Game();
+        Board temp = new Board();
+        temp.printBoard(temp.getBoard1());
     }
 }
