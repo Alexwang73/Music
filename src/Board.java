@@ -9,7 +9,7 @@ public class Board {
         //0 = black spaces, 1 = white spaces
 
         board1 = new int[][] {
-                {5, 1, 1, 1, 1, 1, 0, 4},
+                {2, 1, 1, 1, 1, 1, 0, 4},
                 {0, 0, 0, 0, 0, 1, 0, 1},
                 {0, 0, 0, 0, 1, 1, 0, 1},
                 {0, 0, 0, 0, 1, 0, 0, 1},
@@ -55,13 +55,11 @@ public class Board {
     public void printBoard(int[][] playBoard) {
         for (int x = 0; x < playBoard.length; x++) {
             for (int y = 0; y < playBoard[x].length; y++) {
-                if(board1[x][y] == 2 || board2[x][y] == 2 || board3[x][y] == 2){
+                if (board1[x][y] == 2 || board2[x][y] == 2 || board3[x][y] == 2) {
                     System.out.print("|\uD83C\uDFC6|");
-                }
-                if(board1[x][y] == 1 || board2[x][y] == 1 || board3[x][y] == 1) {
+                } else if(board1[x][y] == 1 || board2[x][y] == 1 || board3[x][y] == 1) {
                     System.out.print("|⬜|");
-                }
-                if (board1[x][y] == 0 || board2[x][y] == 0 || board3[x][y] == 0 ) {
+                } else {
                     System.out.print("|⬛|");
                 }
             }
