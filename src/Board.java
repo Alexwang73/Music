@@ -64,7 +64,6 @@ public class Board {
                 if (board1[x][y] == 0 || board2[x][y] == 0 || board3[x][y] == 0 ) {
                     System.out.print("|⬛|");
                 }
-
             }
             System.out.println();
         }

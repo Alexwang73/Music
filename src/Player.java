@@ -3,12 +3,14 @@ public class Player {
     private int movementPoints;
     private int currentRow;
     private int currentCol;
+    private int[][] board;
 
-    public Player(String name, int movementPoints, int currentRow, int currentCol) {
+    public Player(String name, int movementPoints, int[][] board) {
         this.name = name;
         this.movementPoints = movementPoints;
-        this.currentCol = currentRow;
-        this.currentCol = currentCol;
+        this.board = board;
+        currentCol = 0;
+        currentRow = 0;
     }
 
     public int getMovementPoints() {
