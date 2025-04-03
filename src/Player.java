@@ -1,20 +1,14 @@
 public class Player {
     private String name;
-    private int movementPoints;
     private int currentRow;
     private int currentCol;
     private int[][] board;
 
-    public Player(String name, int movementPoints, int[][] board) {
+    public Player(String name, int[][] board) {
         this.name = name;
-        this.movementPoints = movementPoints;
         this.board = board;
-        currentCol = 0;
-        currentRow = 0;
-    }
-
-    public int getMovementPoints() {
-        return movementPoints;
+        this.currentRow = 0;
+        this.currentCol = 0;
     }
 
     public int getCurrentRow() {
@@ -26,27 +20,25 @@ public class Player {
     }
 
     public void moveLeft() {
-        currentCol --;
-        movementPoints--;
+        if (isValidMove(currentRow, currentCol - 1)) currentCol--;
     }
 
     public void moveRight() {
-        currentCol ++;
-        movementPoints--;
+        if (isValidMove(currentRow, currentCol + 1)) currentCol++;
     }
 
     public void moveUp() {
-        currentRow ++;
-        movementPoints--;
+        if (isValidMove(currentRow - 1, currentCol)) currentRow--;
     }
 
     public void moveDown() {
-        currentRow --;
-        movementPoints--;
+        if (isValidMove(currentRow + 1, currentCol)) currentRow++;
     }
 
-
-
-
-
+    private boolean isValidMove(int newRow, int newCol) {
+        if (newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length) {
+            return board[newRow][newCol] != 0; // Ensure not a wall (black space)
+        }
+        return false;
+    }
 }
