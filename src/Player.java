@@ -39,6 +39,7 @@ public class Player {
         if (newRow >= 0 && newRow < board.length && newCol >= 0 && newCol < board[0].length) {
             return board[newRow][newCol] != 0; // Ensure not a wall (black space)
         }
+        System.out.println("You can't move there");
         return false;
     }
 }

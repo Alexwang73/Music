@@ -22,7 +22,7 @@ public class Game {
             else if (key.equals("s")) player.moveDown();
             else if (key.equals("a")) player.moveLeft();
             else if (key.equals("d")) player.moveRight();
-            else System.out.println("Invalid input!");
+            else System.out.println("Invalid input! Please choose a different move");
 
             // Win condition (reaching position with a 4)
             if (board[player.getCurrentRow()][player.getCurrentCol()] == 4) {
@@ -40,6 +40,8 @@ public class Game {
                     System.out.print("|🎸|");  // Player represented by guitar emoji
                 } else if (board[x][y] == 1) {
                     System.out.print("|⬜|"); // White path
+                } else if (board[x][y] == 4) {
+                    System.out.print("|\uD83C\uDFC6|"); // Trophy
                 } else {
                     System.out.print("|⬛|"); // Walls
                 }
