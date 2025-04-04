@@ -8,5 +8,6 @@ public class GameRunner {
 
         // Run the game (will print the board and take input)
         game.playGame();
+
     }
 }
