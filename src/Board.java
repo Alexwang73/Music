@@ -55,7 +55,9 @@ public class Board {
     public void printBoard(int[][] playBoard) {
         for (int x = 0; x < playBoard.length; x++) {
             for (int y = 0; y < playBoard[x].length; y++) {
-                if (board1[x][y] == 2 || board2[x][y] == 2 || board3[x][y] == 2) {
+                if (board1[x][y] == 3 || board2[x][y] == 3 || board3[x][y] == 3) {
+                    System.out.print("|\uD83D\uDD25|");
+                } else if (board1[x][y] == 2 || board2[x][y] == 2 || board3[x][y] == 2) {
                     System.out.print("|\uD83C\uDFC6|");
                 } else if(board1[x][y] == 1 || board2[x][y] == 1 || board3[x][y] == 1) {
                     System.out.print("|⬜|");
@@ -65,6 +67,11 @@ public class Board {
             }
             System.out.println();
         }
+    }
+
+    public int getTile(int[][] playBoard, Player play) {
+        int[][] board = playBoard;
+        return board[play.getCurrentRow()][play.getCurrentCol()];
     }
 
 }

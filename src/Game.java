@@ -24,6 +24,12 @@ public class Game {
             else if (key.equals("d")) player.moveRight();
             else System.out.println("Invalid input!");
 
+            if (board[player.getCurrentRow()][player.getCurrentCol()] == 3) {
+                printBoard();
+                System.out.println("You LOST");
+                win = true;
+            }
+
             // Win condition (reaching position with a 4)
             if (board[player.getCurrentRow()][player.getCurrentCol()] == 4) {
                 printBoard();
@@ -46,5 +52,13 @@ public class Game {
             }
             System.out.println();
         }
+    }
+
+    public int getCurR() {
+        return player.getCurrentRow();
+    }
+
+    public int getCurC() {
+        return player.getCurrentCol();
     }
 }
