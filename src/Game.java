@@ -16,9 +16,12 @@ public class Game {
         this.board = board;
         this.player = new Player(name, board);
         keys = false;
+
+        /*
+        * Credit: https://www.youtube.com/watch?v=xU1neb9ycgE
+        *
+         */
         songs = Song.load("src\\top_100_most_streamed_songs_on_spotify.csv");
-
-
     }
 
     private void setDifficulty(String difficultyLevel) {
@@ -48,6 +51,9 @@ public class Game {
 
             if(key.equals("g")) {
                 int randomSnippet = (int) (Math.random() * 100) + 1;
+                /*
+                * Credit: https://www.w3schools.com/java/ref_string_format.asp
+                 */
                 String formatted = String.format("%03d", randomSnippet);
                 File songFile = new File("src/snippets/snippet_" + formatted + ".wav");
 

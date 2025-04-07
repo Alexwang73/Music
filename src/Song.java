@@ -32,7 +32,7 @@ public class Song {
 
     /*
     * Author: Max O'Didily
-    *
+    * https://www.youtube.com/watch?v=wJO_cq5XeSA
      */
     public void playMusic(File filePath) {
         try {
@@ -50,7 +50,9 @@ public class Song {
     }
 
 
-
+    /*
+    *Credit: https://www.w3schools.com/java/ref_string_trim.asp
+     */
     public boolean checkGuess(String guess) {
         return guess.trim().equalsIgnoreCase(artist);
     }
