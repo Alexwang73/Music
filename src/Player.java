@@ -7,8 +7,6 @@ public class Player {
     public Player(String name, int[][] board) {
         this.name = name;
         this.board = board;
-        this.currentRow = 0;
-        this.currentCol = 0;
     }
 
     public int getCurrentRow() {
