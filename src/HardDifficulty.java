@@ -10,4 +10,12 @@ public class HardDifficulty extends Difficulty {
     }
 
 
+    @Override
+    public int getReward(boolean correct) {
+        if (correct) {
+            return 2 + (int)(Math.random() * 2);
+        } else {
+            return 1;
+        }
+    }
 }

@@ -8,4 +8,13 @@ public class EasyDifficulty extends Difficulty {
     public int getMovement() {
         return super.getMovement() + 3;
     }
+
+    @Override
+    public int getReward(boolean correct) {
+        if (correct) {
+            return 5;
+        } else {
+            return 2;
+        }
+    }
 }

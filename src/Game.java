@@ -9,17 +9,36 @@ public class Game {
     private boolean keys;
     private ArrayList<Song> songs;
     private int movementPoints;
+    private Difficulty difficulty;
+    private String level;
 
     public Game(int[][] board, String name) {
         this.board = board;
         this.player = new Player(name, board);
         keys = false;
         songs = Song.load("src\\top_100_most_streamed_songs_on_spotify.csv");
-        movementPoints = 3; // Start with 3 movement points
+
+
     }
+
+    private void setDifficulty(String difficultyLevel) {
+        if (difficultyLevel.equalsIgnoreCase("easy")) {
+            difficulty = new EasyDifficulty(movementPoints);
+        } else if (difficultyLevel.equalsIgnoreCase("hard")) {
+            difficulty = new HardDifficulty(movementPoints);
+        } else {
+            difficulty = new Difficulty(movementPoints); // Normal difficulty
+        }
+
+        movementPoints = difficulty.getMovement();
+    }
+
 
     public void playGame() {
         boolean win = false;
+        System.out.print("What level do you want? (easy) (normal) (hard): ");
+        String level = scanner.nextLine();
+        setDifficulty(level);
 
         while (!win) {
             printBoard();
@@ -51,11 +70,13 @@ public class Game {
                 boolean correct = randomSong.checkGuess(response);
 
                 if (correct) {
-                    System.out.println("Correct! You get 3 movement points.");
-                    movementPoints += 3;
+                    int reward = difficulty.getReward(true);
+                    System.out.println("Correct! You get " + reward + " movement points.");
+                    movementPoints += reward;
                 } else {
-                    System.out.println("Incorrect. You get 1 movement point for trying.");
-                    movementPoints += 1;
+                    int reward = difficulty.getReward(false);
+                    System.out.println("Incorrect. You get " + reward + " movement point(s) for trying.");
+                    movementPoints += reward;
                 }
             }
             else if (key.equals("w") || key.equals("a") || key.equals("s") || key.equals("d")) {

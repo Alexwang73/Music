@@ -9,4 +9,12 @@ public class Difficulty {
         return movement;
     }
 
+    public int getReward(boolean correct) {
+        if (correct) {
+            return 3;
+        } else {
+            return 1;
+        }
+    }
+
 }
