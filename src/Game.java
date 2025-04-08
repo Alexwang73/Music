@@ -155,17 +155,9 @@ public class Game {
         for (int x = 0; x < board.length; x++) {
             for (int y = 0; y < board[x].length; y++) {
                 if (x == player.getCurrentRow() && y == player.getCurrentCol()) {
-                    System.out.print("|🎸|");  // Player represented by guitar emoji
-                } else if (board[x][y] == 1) {
-                    System.out.print("|⬜|"); // White path
-                } else if (board[x][y] == 4) {
-                    System.out.print("|\uD83C\uDFC6|"); // Trophy
-                } else if (board[x][y] == 3) {
-                    System.out.print("|\uD83D\uDD12|"); // lock
-                } else if (board[x][y] == 5) {
-                    System.out.print("|\uD83D\uDD11|"); //key
+                    System.out.print("|🎸|");
                 } else {
-                    System.out.print("|⬛|"); // Walls
+                    System.out.print(board[x][y]);
                 }
             }
             System.out.println();
