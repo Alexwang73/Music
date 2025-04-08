@@ -61,13 +61,15 @@ public class Game {
                 Song randomSong = songs.get(randomSnippet + 1);
 
                 System.out.println("Playing random song snippet #" + randomSnippet);
+                System.out.println(randomSong.getName());
+                System.out.println(randomSong.getArtist());
                 randomSong.playMusic(songFile);
 
-                try {
-                    System.out.println("Press Enter to stop the playback...");
-                    System.in.read();
-                } catch (Exception e) {
-                    System.out.println(e);
+                System.out.println("press x to stop the playback: ");
+                String stop = scanner.nextLine();
+
+                if(stop.toLowerCase().equals("x")) {
+                    randomSong.stopMusic();
                 }
 
                 System.out.print("Who is this artist?: ");
