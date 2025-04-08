@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class Game {
     private Player player;
-    private int[][] board;
+    private BoardTile[][] board;
     private Scanner scanner = new Scanner(System.in);
     private boolean keys;
     private ArrayList<Song> songs;
@@ -12,9 +12,9 @@ public class Game {
     private Difficulty difficulty;
     private String level;
 
-    public Game(int[][] board, String name) {
-        this.board = board;
-        this.player = new Player(name, board);
+    public Game(int[][] intBoard, String name) {
+        this.board = convertToTileBoard(intBoard);
+        this.player = new Player(name, intBoard);
         keys = false;
 
         /*
@@ -121,33 +121,35 @@ public class Game {
             }
 
             // Check for special tiles
-            if (board[player.getCurrentRow()][player.getCurrentCol()] == 5) {
+            int tileType = board[player.getCurrentRow()][player.getCurrentCol()].getType();
+
+            if (tileType == 5) {
                 printBoard();
                 System.out.println("You picked up a key. Maybe it can unlock something?");
                 keys = true;
             }
-            if (board[player.getCurrentRow()][player.getCurrentCol()] == 3 && keys == false) {
+
+            if (tileType == 3 && !keys) {
                 printBoard();
                 System.out.println("I need a key to open this.");
-                // Move player back to previous position
                 if (key.equals("w")) player.moveDown();
                 else if (key.equals("s")) player.moveUp();
                 else if (key.equals("a")) player.moveRight();
                 else if (key.equals("d")) player.moveLeft();
-                // Refund the movement point since the move was invalid
                 movementPoints++;
             }
-            if (board[player.getCurrentRow()][player.getCurrentCol()] == 3 && keys == true) {
+
+            if (tileType == 3 && keys) {
                 printBoard();
                 System.out.println("Nice! The key worked.");
             }
 
-            // Win condition (reaching position with a 4)
-            if (board[player.getCurrentRow()][player.getCurrentCol()] == 4) {
+            if (tileType == 4) {
                 printBoard();
                 System.out.println("Congratulations! You won with " + movementPoints + " movement points remaining!");
                 win = true;
             }
+
         }
     }
 
@@ -157,11 +159,34 @@ public class Game {
                 if (x == player.getCurrentRow() && y == player.getCurrentCol()) {
                     System.out.print("|🎸|");
                 } else {
-                    System.out.print(board[x][y]);
+                    System.out.print(board[x][y].getSymbol());
                 }
             }
             System.out.println();
         }
+    }
+
+    public BoardTile[][] convertToTileBoard(int[][] intBoard) {
+        int rows = intBoard.length;
+        int cols = intBoard[0].length;
+        BoardTile[][] tileBoard = new BoardTile[rows][cols];
+
+        //Consulted online resources for the switch case
+        Source:
+        https://www.w3schools.com/java/java_switch.asp
+        for (int x = 0; x < rows; x++) {
+            for (int y = 0; y < cols; y++) {
+                switch (intBoard[x][y]) {
+                    case 1: tileBoard[x][y] = new BoardTile("|⬜|", 1); break; // Path
+                    case 3: tileBoard[x][y] = new BoardTile("|\uD83D\uDD12|", 3); break; // Lock 🔒
+                    case 4: tileBoard[x][y] = new BoardTile("|\uD83C\uDFC6|", 4); break; // Trophy 🏆
+                    case 5: tileBoard[x][y] = new BoardTile("|\uD83D\uDD11|", 5); break; // Key 🔑
+                    default: tileBoard[x][y] = new BoardTile("|⬛|", 0); break; // Wall
+                }
+            }
+        }
+
+        return tileBoard;
     }
 
     public int getCurR() {
