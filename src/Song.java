@@ -10,6 +10,7 @@ public class Song {
     private String name;
     private String filePath;
     private String artist;
+    private Clip currentClip;
 
     public Song(String name, String filePath, String artist) {
         this.name = name;
@@ -34,18 +35,31 @@ public class Song {
     * Author: Max O'Didily
     * https://www.youtube.com/watch?v=wJO_cq5XeSA
      */
+    /*
+     * Author: Max O'Didily
+     * https://www.youtube.com/watch?v=wJO_cq5XeSA
+     */
     public void playMusic(File filePath) {
+        stopMusic(); //first stop the music before playing
+
         try {
             if (filePath.exists()) {
                 AudioInputStream audioInput = AudioSystem.getAudioInputStream(filePath);
-                Clip clip = AudioSystem.getClip();
-                clip.open(audioInput);
-                clip.start();
+                currentClip = AudioSystem.getClip();
+                currentClip.open(audioInput);
+                currentClip.start();
             } else {
                 System.out.println("File not found: " + filePath);
             }
         } catch (Exception e) {
             System.out.println("Error playing song: " + name + " - " + e.getMessage());
+        }
+    }
+
+    public void stopMusic() {
+        if (currentClip != null && currentClip.isRunning()) {
+            currentClip.stop();
+            currentClip.close();
         }
     }
 

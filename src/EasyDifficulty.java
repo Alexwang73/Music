@@ -12,7 +12,7 @@ public class EasyDifficulty extends Difficulty {
     @Override
     public int getReward(boolean correct) {
         if (correct) {
-            return 5;
+            return 7;
         } else {
             return 2;
         }
