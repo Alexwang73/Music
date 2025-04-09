@@ -11,9 +11,9 @@ public class Difficulty {
 
     public int getReward(boolean correct) {
         if (correct) {
-            return 3;
+            return 5;
         } else {
-            return 1;
+            return 3;
         }
     }
 
