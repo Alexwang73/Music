@@ -3,6 +3,7 @@ public class WallTile extends BoardTile {
         super(symbol, 0);
     }
 
+    @Override
     public String getSymbol() { return "|⬛|"; }
 }
 

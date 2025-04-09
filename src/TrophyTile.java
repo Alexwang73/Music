@@ -3,5 +3,6 @@ public class TrophyTile extends BoardTile {
         super(symbol, 4);
     }
 
+    @Override
     public String getSymbol() { return "|\uD83C\uDFC6|"; }
 }

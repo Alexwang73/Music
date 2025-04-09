@@ -3,5 +3,6 @@ public class LockTile extends BoardTile {
         super(symbol, 3);
     }
 
+    @Override
     public String getSymbol() { return "|\uD83D\uDD12|"; }
 }

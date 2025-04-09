@@ -3,5 +3,6 @@ public class PathTile extends BoardTile {
         super(symbol, 1);
     }
 
+    @Override
     public String getSymbol() { return "|⬜|"; }
 }
