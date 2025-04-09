@@ -50,7 +50,7 @@ public class Game {
             String key = scanner.nextLine().toLowerCase();
 
             if(key.equals("g")) {
-                int randomSnippet = (int) (Math.random() * 100) + 1;
+                int randomSnippet = (int) (Math.random() * 100);
                 /*
                 * Credit: https://www.w3schools.com/java/ref_string_format.asp
                  */
